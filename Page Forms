@@ -1,0 +1,81 @@
+ public class PageForms
+    //описываем страницу Формс с помощью методов и свойств
+    {
+
+        private IWebDriver Driver { get; set; }//описываем наш браузер под названием Driver
+        public string Title
+        {
+            get
+
+            {
+
+                return Driver.Title;
+
+            }
+        }//возвращает заголовок открытого окна
+        public IWebElement NameField
+        {
+            get
+            {
+
+                return Driver.FindElement(By.Id("et_pb_contact_name_0"));
+            }
+
+        }//свойство которое описыает элемент страницы и как его найити
+        public IWebElement NameFieldCaptcha
+        {
+            get
+            {
+
+                return Driver.FindElement(By.Id("et_pb_contact_name_1"));
+            }
+
+        }
+        
+        public IWebElement MessageField
+        {
+            get
+            {
+                return Driver.FindElement(By.Id("et_pb_contact_message_0"));
+            }
+        }
+        
+        public IWebElement MessageFieldCaptcha
+        {
+            get
+            {
+                return Driver.FindElement(By.Id("et_pb_contact_message_1"));
+            }
+        }
+        public IWebElement SubmitButton2
+        {
+            get
+            {
+                return Driver.FindElements(By.Name("et_builder_submit_button"))[1];
+            }
+        }
+        public IWebElement CapchField//поле куда записываем результат
+        {
+            get
+            {
+                return Driver.FindElement(By.Name("et_pb_contact_captcha_1"));
+            }
+        }
+
+        //сообщение об успешном заполнении формы
+        public IWebElement SuccessMessage
+        {
+            get
+            {
+                return Driver.FindElement(By.XPath("//div[@id='et_pb_contact_form_1']/div/p"));
+            }
+        }
+
+        //сообщение с просьбой заполнить поля формы
+        public IWebElement SuccessFailMessage => Driver.FindElement(By.XPath("//div[@class='et-pb-contact-message']//p"));
+
+        //конструтор с помощью которого создаем объект страницу PageForms
+        public PageForms(IWebDriver driver)
+        {
+            Driver = driver;
+        }
