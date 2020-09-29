@@ -1,0 +1,64 @@
+
+        [TestMethod]
+        public void DriverInterrigation()//224-225
+
+        {
+            PageForms pageForms = new PageForms(Driver);
+            pageForms.GoToPage();
+
+            Driver.Navigate().GoToUrl("https://ultimateqa.com/automation/");
+
+            Thread.Sleep(2000);
+
+            var x = Driver.WindowHandles;
+            var y = Driver.CurrentWindowHandle;
+            var z = Driver.Url;
+            var w = Driver.PageSource;
+            var p = Driver.Title;
+
+        }
+
+        [TestMethod]
+        public void FormsFieldsFillout()
+        //222-223 заполняем формы и проверяем их на валидность
+        {
+            PageForms pageForms = new PageForms(Driver);
+            pageForms.GoToPage();
+            Thread.Sleep(2000);
+            pageForms.FillOutFormWithCaptcha("Anna", "Text");
+
+
+        }
+
+        [TestMethod]
+        [TestCategory("Manipulation")]
+        public void FormsSubmit_Success()
+        {
+            PageForms pageForms = new PageForms(Driver);
+            pageForms.GoToPage();
+            pageForms.FillOutFormWithCaptcha("Alex", "Text");
+            Thread.Sleep(2000);
+            //pageForms.SubmitButton2.Submit();
+            //Thread.Sleep(2000);
+            //Assert.IsTrue(pageForms.SuccessMessage.Displayed);
+
+
+            pageForms.NameFieldCaptcha.Clear();
+            Thread.Sleep(2000);
+            pageForms.MessageFieldCaptcha.Clear();
+
+            pageForms.CapchField.Clear();
+            Thread.Sleep(2000);
+            pageForms.SubmitButton2.Submit();
+            Thread.Sleep(2000);
+            Assert.IsTrue(pageForms.SuccessFailMessage.Displayed);
+            //объект
+
+
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            IWebElement firstResult = wait.Until(
+                driver => driver.FindElement(By.XPath("//a/h3"))
+                );
+
+        }
+
