@@ -1,4 +1,4 @@
-# Selenium-Course 2020(Platform Udemy)
+# Selenium Course (Udemy)
 Started in 05/2020.
 
 
